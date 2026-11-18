@@ -1,69 +1,17 @@
-import Image from "next/image";
-
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Cta, Eyebrow, Photo, Reveal, SectionEnd, TextLink } from "@/components/ui";
+import { articles, images, site } from "@/lib/site";
+export default function Home() {return <>
+<section className="home-hero"><div className="hero-copy"><Eyebrow>A BEAUTY STUDIO FOR THE WAY YOU LIVE</Eyebrow><h1>Beauty,<span>on your</span><em>terms.</em></h1><p>Not a new you. Just a little more of everything that makes you, you. Contemporary beauty, made personal in the heart of Mumbai.</p><div className="hero-actions"><Cta href="/contact">Book an appointment</Cta><TextLink href="/about">Discover our story</TextLink></div></div><div className="hero-image"><Photo src={images.hero} alt="Editorial portrait of a woman in red with dramatic beauty lighting" priority sizes="(max-width: 850px) 100vw, 47vw"/><div className="hero-stamp">Made to<br/>feel like<br/>you ✳</div><span className="hero-image-index">MIRA / CAMPAIGN 001</span></div></section>
+<div className="marquee-line"><b>HAIR · SKIN · MAKEUP · NAILS</b><b>✳</b><b>THE ART OF FEELING LIKE YOURSELF</b><b>✳</b><b>MUMBAI, INDIA</b></div>
+<section className="statement page-container"><div><Eyebrow>01 / OUR POINT OF VIEW</Eyebrow></div><Reveal><h2>There is no one way to be <em>beautiful.</em> And that&apos;s exactly the point.</h2><p className="body-copy">At MIRA, beauty is a conversation, not a prescription. We bring professional artistry and a genuinely personal approach together, so every appointment feels considered from the first hello to the final look.</p></Reveal></section>
+<section className="service-feature page-container"><div className="service-feature-head"><div><Eyebrow>02 / THE MIRA MENU</Eyebrow><h2 className="section-title">A little time<br/><em>for yourself.</em></h2></div><p className="body-copy">The everyday appointments and once-in-a-lifetime moments. Whatever brings you in, we&apos;ll make it count.</p></div><div className="feature-grid">{[{title:"Hair, your way",text:"Shape, colour and care that works with your texture.",image:images.hair,href:"/services/hair-spa-treatments"},{title:"Skin, considered",text:"Facials built around your skin, not a script.",image:images.skin,href:"/services/luxury-facials"},{title:"Makeup, reimagined",text:"Artistry that lets your personality lead.",image:images.portrait,href:"/services/party-makeup"}].map((item,i)=><Reveal key={item.title} delay={i*.12}><Link href={item.href} className="feature-tile hover-photo"><Photo src={item.image} alt={item.title}/><div className="mini-index"><span>0{i+1} / SERVICE</span><ArrowUpRight size={17}/></div><h3>{item.title}</h3><p>{item.text}</p></Link></Reveal>)}</div><div className="feature-bottom"><SectionEnd href="/services" text="Explore all services"/></div></section>
+<section className="bridal-feature"><div className="bridal-feature-images"><Photo src={images.bridal} alt="Indian bride with elegant makeup and jewellery"/><Photo className="small-overlay" src={images.bridalTwo} alt="Indian bridal beauty portrait in red"/></div><div className="bridal-feature-copy"><Eyebrow light>03 / THE BRIDAL STUDIO</Eyebrow><Reveal><h2>For the day<br/>you&apos;ll <em>always</em><br/>remember.</h2><p>Every bride has her own idea of beautiful. Ours is to listen first, then create a look that makes room for all of you—the tradition, the individuality, and the feeling of the moment.</p><Cta href="/bridal-studio" light>Enter the bridal studio</Cta><div className="small-note">THE ART OF BEING UNMISTAKABLY YOU · MIRA BRIDAL</div></Reveal></div></section>
+<section className="difference page-container"><div className="difference-head"><div><Eyebrow>04 / WHY MIRA</Eyebrow><h2 className="section-title">The details<br/><em>make the difference.</em></h2></div><p className="body-copy">The best beauty experiences don&apos;t start with a product. They start with someone paying attention.</p></div><div className="difference-list">{[{n:"01",title:"A real conversation",text:"We get to know your preferences, your routine and what you actually want before we make a recommendation."},{n:"02",title:"People who know their craft",text:"Specialists in their own disciplines, working together to bring thoughtful technique to every appointment."},{n:"03",title:"Room to be yourself",text:"Come as you are. We believe great service should feel welcoming, unhurried and entirely yours."}].map((x,i)=><Reveal key={x.n} delay={i*.1} className="difference-item"><span>{x.n}</span><h3>{x.title}</h3><p>{x.text}</p></Reveal>)}</div></section>
+<section className="people-tease"><div className="people-tease-copy"><Eyebrow>05 / THE PEOPLE BEHIND THE WORK</Eyebrow><h2 className="section-title">Good hands.<br/><em>Great instincts.</em></h2><p className="body-copy">Our artists are part technician, part collaborator, and all ears. Get to know the people who make your time at MIRA feel different.</p><div><Cta href="/experts">Meet our people</Cta></div></div><Photo src={images.portraitThree} alt="Editorial portrait celebrating contemporary Indian beauty"/></section>
+<section className="quote-section"><Eyebrow>WORDS WE HOLD ONTO</Eyebrow><blockquote>“They listened to what I wanted, made suggestions I hadn&apos;t thought of, and somehow the result felt more like me than ever.”</blockquote><cite>— A MIRA CLIENT, BANDRA</cite></section>
+<section className="home-gallery page-container"><div className="split-heading"><div><Eyebrow>06 / THE LOOKBOOK</Eyebrow><h2 className="section-title">A study in<br/><em>self-expression.</em></h2></div><p className="body-copy">A collection of details, transformations and moments worth remembering.</p></div><div className="gallery-preview"><Link href="/gallery" className="hover-photo"><Photo src={images.bridalThree} alt="Indian bridal editorial makeup portrait"/></Link><Link href="/gallery" className="hover-photo"><Photo src={images.nails} alt="Professional nail manicure close-up"/></Link><Link href="/gallery" className="hover-photo"><Photo src={images.portraitTwo} alt="Fashion beauty portrait in burgundy"/></Link></div><div style={{marginTop:50}}><SectionEnd href="/gallery" text="View the gallery"/></div></section>
+<section className="journal-preview page-container"><div className="split-heading"><div><Eyebrow>07 / THE JOURNAL</Eyebrow><h2 className="section-title">Notes on<br/><em>looking forward.</em></h2></div><TextLink href="/journal">Read all stories</TextLink></div><div className="article-grid">{articles.slice(0,3).map(a=><Link href={`/journal/${a.slug}`} className="article-card hover-photo" key={a.slug}><Photo src={a.image} alt={a.title}/><div className="article-meta"><span>{a.category}</span><span>{a.read}</span></div><h3>{a.title}</h3><p>{a.description}</p></Link>)}</div></section>
+<section className="home-location"><Photo src={images.salon} alt="Contemporary beauty salon interior with styling stations"/><div className="home-location-copy"><Eyebrow>08 / COME ON IN</Eyebrow><h2 className="section-title">Your seat is<br/><em>waiting.</em></h2><p>Find us on Linking Road in Bandra West. Step off the busy street, settle in, and let us take it from here.</p><p><strong>{site.address}</strong><br/>{site.hours}</p><TextLink href="/contact">Find us & get in touch</TextLink></div></section>
+</>}
